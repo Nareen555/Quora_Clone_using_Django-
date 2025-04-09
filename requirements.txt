@@ -1,0 +1,4 @@
+sqlalchemy_models
+psycopg2-binary
+pyjwt
+requests

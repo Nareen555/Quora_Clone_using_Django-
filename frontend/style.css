@@ -1,0 +1,47 @@
+body{
+    background-color: black;
+}
+#feed_page{
+    display: flex;
+    padding: 10px;
+}
+#quora_user{
+    background-color:black;
+    margin: 10px;
+    width: 30%;
+    border-radius: 10px;
+    padding: 10px;
+}
+#feed{
+    background-color:white;
+    width: 60%;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#user_details{
+    background-color:black;
+    width: 30%;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#post_cmd{
+    margin: 1px;
+    padding: 1px;
+}
+#question{
+    background-color: gainsboro;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+#question h5, #question h6 {
+    margin: 0;
+    padding: 2px 0;
+    line-height: 1.4;
+}
+#answer{
+    background-color: rgb(240, 240, 243);
+    border-radius: 10px;
+}

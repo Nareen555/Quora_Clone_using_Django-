@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quora Clone</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #followers{
+            background-color: white;
+            text-align: center;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="followers">
+        <h3>List of user following</h3>
+        {% if following %}
+            {% for follow in following%}
+               
+                <label for="">{{follow}}</label>
+                <button>following</button>
+            {% endfor %}
+        {% endif %}
+        <h3>List of user unfollowing</h3>
+        {% if unfollowing %}
+            {% for unfollow in unfollowing%}
+            
+                <form action="update/" method="POST">
+                    <input type="hidden" name="password" value="{{request.GET.password}}">
+                    <input type="hidden" name="username" value="{{ request.GET.username }}">
+                    <label for="">{{unfollow}}</label>
+                    <input type="hidden" name="user_to_follow" value="{{unfollow}}">
+                    <button onclick="">Click to follow</button><br>
+                </form>
+              
+                
+            {% endfor %}
+        {% endif %}
+
+    </div>
+</body>
+</html>

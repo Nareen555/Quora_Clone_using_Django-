@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quora Clone</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="feed_page">
+        
+        <div id="quora_user">
+        </div>
+        <div id="feed">
+            <h1>
+                quora feed page 
+            </h1>
+            <form action="">
+                <button onclick="">Logout</button>
+            </form>
+            <form action="followers/" method="GET">
+                <input type="hidden" name="username" value="{{ request.GET.username }}">
+                <input type="hidden" name="password" value="{{request.GET.password}}">
+                <button onclick="">Click to followers</button>
+            </form>
+            <form action="questions/" method="POST">
+                <input type="hidden" name="username" value="{{ request.GET.username }}">
+                <input type="hidden" name="password" value="{{request.GET.password}}">
+                <input type="text"  name="question" placeholder="ask questions">
+                <button onclick="">Ask</button>
+            </form>
+            <div id="post_cmd">
+                    {% if data != "No posts follows more users" %}
+                        {% for post in data%}
+                            <div id="question">
+                                <h5>"{{post.user_name}}" asked question on {{post.post_created_date}}</h5>
+                                <h2>{{post.post}}</h2>
+                                {% if post.you_upvote  %}
+                                    <h6>you and Others {{post.upvote_count}} liked</h6>
+                                {% else %}
+                                    <h6>Others {{post.upvote_count}} liked</h6>
+                                {% endif %}
+                                <form action="votes/" method="POST">
+                                    <input type="hidden" name="request_id" value="{{post.post_request_id}}">
+                                    <input type="hidden" name="post_type" value="question">
+                                    <input type="hidden" name="you_upvote" value="{{post.you_upvote}}">
+                                    <input type="hidden" name="password" value="{{request.GET.password}}">
+                                    <input type="hidden" name="username" value="{{ request.GET.username }}">
+                                    <button onclick="">Like</button>
+                                </form>
+                                <form action="questions/" method="POST">
+                                    <input type="hidden" name="question_request_id" value="{{post.post_request_id}}">
+                                    <input type="hidden" name="password" value="{{request.GET.password}}">
+                                    <input type="hidden" name="username" value="{{ request.GET.username }}">
+                                    <input type="text"  name="question" placeholder="ans questions">
+                                    <button onclick="">Ans</button>
+                                </form>
+                                <div id="answer">
+                                    {% if post.cmd == "No answer add you answer"%}
+                                    {% else %}
+                                        {% for cmd in post.cmd%}
+                                            <h5>"{{cmd.user_name}}" answered question on {{cmd.post_created_date}}</h5>
+                                            <h3>{{cmd.post}}</h3>
+                                            {% if cmd.you_upvote  %}
+                                                <h6>you and Others {{cmd.upvote_count}} liked</h6>
+                                            {% else %}
+                                                <h6>Others {{cmd.upvote_count}} liked</h6>
+                                            {% endif %}
+                                            <form action="votes/" method="POST">
+                                                <input type="hidden" name="request_id" value="{{cmd.cmd_request_id}}">
+                                                <input type="hidden" name="post_type" value="answer">
+                                                <input type="hidden" name="you_upvote" value="{{cmd.you_upvote}}">
+                                                <input type="hidden" name="password" value="{{request.GET.password}}">
+                                                <input type="hidden" name="username" value="{{ request.GET.username }}">
+                                                <button onclick="">Like</button>
+                                            </form>
+                                        {% endfor %}
+                                        
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                            <h1>{{data}}</h1>
+
+                    {%endif%}
+
+            </div>
+            
+        </div>
+        <div id="user_details">
+
+        </div>
+    </div>
+</body>
+</html>

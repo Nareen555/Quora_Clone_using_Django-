@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quora Clone</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #loginform{
+            background-color: white;
+            text-align: center;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginform">
+        <div>
+            
+            {% if page == "login"%}
+
+                <h1>
+                    Quora Clone Login
+                </h1>
+                    <form action="/quora_clone/log_in/home/" method="GET">
+                        <label for="username">Enter user name</label><br>
+                        <input type="text" id="username" name="username"><br>
+                        <label for="password">Enter password</label><br>
+                        <input type="text" id="password" name="password"><br>
+                        <button onclick="">Login</button><br>
+                        <a href="http://127.0.0.1:8000/quora_clone/sign_up/">Signup page</a>
+
+                    </form>
+                {% if hint %}
+                    <p style="color:red;">
+                        {{hint}}
+                    </p>
+                {% endif %}
+
+            {% elif page == "signup"%}
+                <h1>
+                    Quora Clone Signup
+                </h1>
+                    <form action="/quora_clone/log_in/home/" method="POST">
+                        <label for="username">Enter user name</label><br>
+                        <input type="text" id="username" name="username"><br>
+                        <label for="password">Enter password</label><br>
+                        <input type="text" id="password" name="password"><br>
+                        <button onclick="">Signup</button>
+
+                    </form>
+                {% if hint %}
+                    <p style="color:red;">
+                        {{hint}}
+                    </p>
+                {% endif %}
+            {% endif %}
+            
+                
+        
+        </div>
+            
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>
